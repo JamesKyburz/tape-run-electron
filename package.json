@@ -1,0 +1,24 @@
+{
+  "name": "tape-run-atom-shell",
+  "description": "tape tests run in atom-shell",
+  "keywords": "tape tests atom-shell testing",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jameskyburz/tape-run-atom-shell"
+  },
+  "author": {
+    "name": "James Kyburz",
+    "email": "james.kyburz@gmail.com"
+  },
+  "bin": {
+    "tape-rune-atom-shell": "index.js"
+  },
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "concat-stream": "^1.4.8",
+    "tap-finished": "0.0.1",
+    "which": "^1.0.9",
+    "win-spawn": "^2.0.0"
+  }
+}
