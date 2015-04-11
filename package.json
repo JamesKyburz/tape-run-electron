@@ -13,7 +13,7 @@
   "bin": {
     "tape-run-atom-shell": "index.js"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "dependencies": {
     "concat-stream": "^1.4.8",
