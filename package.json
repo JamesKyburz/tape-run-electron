@@ -11,7 +11,7 @@
     "email": "james.kyburz@gmail.com"
   },
   "bin": {
-    "tape-rune-atom-shell": "index.js"
+    "tape-run-atom-shell": "index.js"
   },
   "version": "1.0.0",
   "license": "MIT",
