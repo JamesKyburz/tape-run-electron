@@ -18,6 +18,7 @@ function resolve(module) {
 }
 
 process.stdin.pipe(concat(function (js) {
-  spawn(atom, [__dirname + '/run.js', js.toString()]).
-    stdout.pipe(process.stdout)
+  var runner = spawn(atom, [__dirname + '/run.js', js.toString()], {cwd: process.cwd()})
+  runner.stdout.pipe(process.stdout)
+  runner.stderr.pipe(process.stderr)
 }))
