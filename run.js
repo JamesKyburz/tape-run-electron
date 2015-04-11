@@ -28,7 +28,9 @@ app.on('ready', function () {
     }
   })
 
-  mainWindow.webContents.executeJavaScript(inject(js))
+  mainWindow.webContents.on('did-stop-loading', function load() {
+    mainWindow.webContents.executeJavaScript(inject(js))
+  })
 })
 
 function inject (js) {
@@ -36,6 +38,7 @@ function inject (js) {
     "var ipc = require('ipc')\n"+
     'console.log = redirect\n'+
     'process.browser = true\n'+
+    "global.module.paths.push('"+process.cwd() + "/node_modules'" + ')\n'+
     "ipc.on('started', function () {\n"+
       js+'\n'+
     '})\n'+
