@@ -9,18 +9,12 @@ var atom = resolve('atom-shell')
 resolve('tape')
 
 function resolve(module) {
-  var resolved
   try {
-    resolved = require.resolve(module)
+    return which(module)
   } catch(e) {
-    try {
-      resolved = which(module)
-    } catch(e) {
-      console.error('Cannot find ' + module + ' from here, please install it from npm')
-      process.exit(1)
-    }
+    console.error('Cannot find ' + module + ' from here, please install it from npm')
+    process.exit(1)
   }
-  return resolved
 }
 
 process.stdin.pipe(concat(function (js) {
