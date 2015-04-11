@@ -7,7 +7,7 @@ var js = process.argv[2];
 require('crash-reporter').start()
 
 app.on('ready', function () {
-  var mainWindow = new BrowserWindow({show: true})
+  var mainWindow = new BrowserWindow({show: false})
   mainWindow.loadUrl('data:text/html;base64,' + new Buffer('<script>' + inject(js) + '</script>').toString('base64'))
 
   var finished = require('tap-finished');
