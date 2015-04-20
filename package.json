@@ -1,17 +1,17 @@
 {
-  "name": "tape-run-atom-shell",
-  "description": "tape tests run in atom-shell",
-  "keywords": "tape tests atom-shell testing",
+  "name": "tape-run-electron",
+  "description": "tape tests run in electron",
+  "keywords": "tape tests atom-shell electron testing",
   "repository": {
     "type": "git",
-    "url": "git://github.com/jameskyburz/tape-run-atom-shell"
+    "url": "git://github.com/jameskyburz/tape-run-electron"
   },
   "author": {
     "name": "James Kyburz",
     "email": "james.kyburz@gmail.com"
   },
   "bin": {
-    "tape-run-atom-shell": "index.js"
+    "tape-run-electron": "index.js"
   },
   "version": "1.0.5",
   "license": "MIT",

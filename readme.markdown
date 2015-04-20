@@ -1,20 +1,24 @@
-# tape-run-atom-shell
+# tape-run-electron
 
-A [tape](https://github.com/substack/tape) test runner that runs your tests in [atom-shell](https://github.com/atom/atom-shell)
+A [tape](https://github.com/substack/tape) test runner that runs your tests in [electron](https://github.com/atom/electron)
 
 ```
-cat tests/*.js | tape-run-atom-shell
+cat tests/*.js | tape-run-electron
 ```
 or
 ```
-browserify tests/*.js | tape-run-atom-shell
+browserify tests/*.js | tape-run-electron
 ```
 
-You need to have atom-shell and tape locally or globally
+You need to have [electron](npm.im/electron-prebuilt) and [tape](npm.im/tape) locally or globally
+
+## Install
+
+npm install tape-run-electron
 
 ## Gotchas
 
-atom-shell is not really a browser.
+electron is not really a browser.
 
 __dirname is global which may break tests.
 
