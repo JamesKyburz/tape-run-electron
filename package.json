@@ -13,7 +13,7 @@
   "bin": {
     "tape-run-electron": "index.js"
   },
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "MIT",
   "dependencies": {
     "concat-stream": "^1.4.8",
