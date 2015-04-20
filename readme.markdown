@@ -10,7 +10,7 @@ or
 browserify tests/*.js | tape-run-electron
 ```
 
-You need to have [electron](npm.im/electron-prebuilt) and [tape](npm.im/tape) locally or globally
+You need to have [electron](http://npm.im/electron-prebuilt) and [tape](http://npm.im/tape) locally or globally
 
 ## Install
 
