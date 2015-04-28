@@ -7,7 +7,7 @@ require('crash-reporter').start()
 
 app.on('ready', function () {
   var mainWindow = new BrowserWindow({show: false})
-  mainWindow.loadUrl('data:text/html;')
+  mainWindow.loadUrl('file://' + __dirname + '/blank.html')
 
   var finished = require('tap-finished');
 
