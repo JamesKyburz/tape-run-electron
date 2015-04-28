@@ -2,7 +2,6 @@
 
 var path = require('path')
 var spawn = require('win-spawn')
-var concat = require('concat-stream')
 
 var electron = resolve('electron-prebuilt')
 resolve('tape')
@@ -20,8 +19,7 @@ function resolve(module) {
   }
 }
 
-process.stdin.pipe(concat(function (js) {
-  var runner = spawn(electron, [__dirname + '/run.js', js.toString()], {cwd: process.cwd()})
-  runner.stdout.pipe(process.stdout)
-  runner.stderr.pipe(process.stderr)
-}))
+var runner = spawn(electron, [__dirname + '/run.js'], {cwd: process.cwd()})
+runner.stdout.pipe(process.stdout)
+runner.stderr.pipe(process.stderr)
+process.stdin.pipe(runner.stdin)
