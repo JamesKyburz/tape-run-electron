@@ -1,8 +1,7 @@
 var app = require('app')
 var ipc = require('ipc')
 var BrowserWindow = require('browser-window')
-
-var js = process.argv[2];
+var concat = require('concat-stream')
 
 require('crash-reporter').start()
 
@@ -18,8 +17,12 @@ app.on('ready', function () {
   })
 
   ipc.once('started', function () {
-    mainWindow.send('started')
+    process.stdin.pipe(concat(runTests))
   })
+
+  function runTests(js) {
+    mainWindow.webContents.executeJavaScript(js.toString())
+  }
 
   ipc.on('log', function(e, data) {
     if (data) {
@@ -29,21 +32,19 @@ app.on('ready', function () {
   })
 
   mainWindow.webContents.on('did-stop-loading', function load() {
-    mainWindow.webContents.executeJavaScript(inject(js))
+    mainWindow.webContents.executeJavaScript(bootstrap())
   })
+
+  function bootstrap () {
+    return ''+
+      "var ipc = require('ipc')\n"+
+      'console.log = redirect\n'+
+      'process.browser = true\n'+
+      "global.module.paths.push('"+process.cwd() + "/node_modules'" + ')\n'+
+      "ipc.send('started')\n"+
+      "function redirect(text) {\n"+
+        "ipc.send('log', text)\n"+
+      '}'
+  }
 })
 
-function inject (js) {
-  return ''+
-    "var ipc = require('ipc')\n"+
-    'console.log = redirect\n'+
-    'process.browser = true\n'+
-    "global.module.paths.push('"+process.cwd() + "/node_modules'" + ')\n'+
-    "ipc.on('started', function () {\n"+
-      js+'\n'+
-    '})\n'+
-    "ipc.send('started')\n"+
-    "function redirect(text) {\n"+
-      "ipc.send('log', text)\n"+
-    '}'
-}
