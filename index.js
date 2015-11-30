@@ -23,3 +23,7 @@ var runner = spawn(electron, [__dirname + '/run.js'], {cwd: process.cwd()})
 runner.stdout.pipe(process.stdout)
 runner.stderr.pipe(process.stderr)
 process.stdin.pipe(runner.stdin)
+
+runner.on('close', function (code) {
+  process.exit(code)
+})

@@ -13,7 +13,7 @@ app.on('ready', function () {
 
   var p = finished(function (results) {
     mainWindow.send('close')
-    app.quit()
+    process.exit( results.ok ? 0 : 1 )
   })
 
   ipc.once('started', function () {
@@ -21,12 +21,18 @@ app.on('ready', function () {
   })
 
   function runTests(js) {
-    mainWindow.webContents.executeJavaScript(js.toString())
+    mainWindow.webContents.executeJavaScript(
+      "window.onerror = function(err) { console.log('Bail out! ' + err) };" +
+      js.toString()
+    )
   }
 
   ipc.on('log', function(e, data) {
     if (data) {
       console.log(data)
+      if( data.match(/^Bail out!/) ) {
+        process.exit(1)
+      }
       p.write(data + '\n')
     }
   })
