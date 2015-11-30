@@ -1,6 +1,7 @@
 {
   "name": "tape-run-electron",
   "description": "tape tests run in electron",
+  "version": "1.0.7",
   "keywords": "tape tests atom-shell electron testing",
   "repository": {
     "type": "git",
@@ -13,11 +14,16 @@
   "bin": {
     "tape-run-electron": "index.js"
   },
-  "version": "1.0.7",
-  "license": "MIT",
+  "scripts": {
+    "prepublish": "standard"
+  },
   "dependencies": {
     "concat-stream": "^1.4.8",
     "tap-finished": "0.0.1",
     "win-spawn": "^2.0.0"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "standard": "5.4.1"
   }
 }

@@ -1,18 +1,16 @@
 #!/usr/bin/env node
-
-var path = require('path')
 var spawn = require('win-spawn')
 
 var electron = resolve('electron-prebuilt')
 resolve('tape')
 
-function resolve(module) {
+function resolve (module) {
   try {
     return require(process.cwd() + '/node_modules/' + module)
-  } catch(e) {
+  } catch (e) {
     try {
       return require(module)
-    } catch(e) {
+    } catch (e) {
       console.error('Cannot find ' + module + ' from here, please install it from npm')
       process.exit(1)
     }
