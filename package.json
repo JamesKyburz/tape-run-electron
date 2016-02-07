@@ -1,7 +1,7 @@
 {
   "name": "tape-run-electron",
   "description": "tape tests run in electron",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "keywords": "tape tests atom-shell electron testing",
   "repository": {
     "type": "git",
