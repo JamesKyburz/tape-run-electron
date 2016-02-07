@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 var spawn = require('win-spawn')
+var path = require('path')
 
 var electron = resolve('electron-prebuilt')
 resolve('tape')
@@ -17,7 +18,7 @@ function resolve (module) {
   }
 }
 
-var runner = spawn(electron, [__dirname + '/run.js'], {cwd: process.cwd()})
+var runner = spawn(electron, [path.join(__dirname, '/run.js')], {cwd: process.cwd()})
 runner.stdout.pipe(process.stdout)
 runner.stderr.pipe(process.stderr)
 process.stdin.pipe(runner.stdin)
