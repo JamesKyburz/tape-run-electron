@@ -4,8 +4,6 @@ var ipc = require('ipc')
 var BrowserWindow = require('browser-window')
 var concat = require('concat-stream')
 
-require('crash-reporter').start()
-
 app.on('ready', function () {
   var mainWindow = new BrowserWindow({show: false})
   mainWindow.loadUrl('file://' + path.join(__dirname, '/blank.html'))
