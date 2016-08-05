@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "concat-stream": "^1.4.8",
-    "tap-finished": "0.0.1",
-    "win-spawn": "^2.0.0"
+    "cross-spawn": "~4.0.0",
+    "tap-finished": "0.0.1"
   },
   "license": "MIT",
   "devDependencies": {
