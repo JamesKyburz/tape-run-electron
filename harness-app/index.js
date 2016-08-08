@@ -1,14 +1,10 @@
-var app = require('app')
+var {app, BrowserWindow, ipcMain} = require('electron')
 var path = require('path')
-var ipc = require('ipc')
-var BrowserWindow = require('browser-window')
 var concat = require('concat-stream')
-
-require('crash-reporter').start()
 
 app.on('ready', function () {
   var mainWindow = new BrowserWindow({show: false})
-  mainWindow.loadUrl('file://' + path.join(__dirname, '/blank.html'))
+  mainWindow.loadURL('file://' + path.join(__dirname, '/blank.html'))
 
   var finished = require('tap-finished')
 
@@ -17,7 +13,7 @@ app.on('ready', function () {
     process.exit(results.ok ? 0 : 1)
   })
 
-  ipc.once('started', function () {
+  ipcMain.once('started', function () {
     process.stdin.pipe(concat(runTests))
   })
 
@@ -28,7 +24,7 @@ app.on('ready', function () {
     )
   }
 
-  ipc.on('log', function (e, data) {
+  ipcMain.on('log', function (e, data) {
     if (data) {
       console.log(data)
       if (data.match(/^Bail out!/)) {
@@ -43,14 +39,17 @@ app.on('ready', function () {
   })
 
   function bootstrap () {
-    return '' +
-    "var ipc = require('ipc')\n" +
-    'console.log = redirect\n' +
-    'process.browser = true\n' +
-    "global.module.paths.push('" + process.cwd() + "/node_modules'" + ')\n' +
-    "ipc.send('started')\n" +
-    'function redirect(text) {\n' +
-    "ipc.send('log', text)\n" +
-    '}'
+    var codePath = process.cwd() + "/node_modules";
+    return `
+      var redirect = function(text) {
+        ipcRenderer.send('log', text);
+      };
+      var {ipcRenderer} = require('electron');
+      console.log = redirect;
+      process.browser = true;
+      global.module.paths.push('${codePath}');
+      ipcRenderer.send('started');
+
+    `;
   }
 })

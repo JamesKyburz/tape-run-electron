@@ -1,8 +1,8 @@
 #!/usr/bin/env node
-var spawn = require('win-spawn')
+var spawn = require('cross-spawn')
 var path = require('path')
 
-var electron = resolve('electron-prebuilt')
+var electron = resolve('electron')
 resolve('tape')
 
 function resolve (module) {
@@ -18,7 +18,7 @@ function resolve (module) {
   }
 }
 
-var runner = spawn(electron, [path.join(__dirname, '/run.js')], {cwd: process.cwd()})
+var runner = spawn(electron, [path.join(__dirname, 'harness-app')], {cwd: process.cwd()})
 runner.stdout.pipe(process.stdout)
 runner.stderr.pipe(process.stderr)
 process.stdin.pipe(runner.stdin)
