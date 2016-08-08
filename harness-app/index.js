@@ -39,7 +39,7 @@ app.on('ready', function () {
   })
 
   function bootstrap () {
-    var codePath = process.cwd() + "/node_modules";
+    var codePath = process.cwd() + '/node_modules'
     return `
       var redirect = function(text) {
         ipcRenderer.send('log', text);
@@ -50,6 +50,6 @@ app.on('ready', function () {
       global.module.paths.push('${codePath}');
       ipcRenderer.send('started');
 
-    `;
+    `
   }
 })
