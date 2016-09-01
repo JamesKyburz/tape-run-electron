@@ -18,7 +18,7 @@
     "prepublish": "standard"
   },
   "dependencies": {
-    "concat-stream": "1.5.1",
+    "concat-stream": "1.5.2",
     "cross-spawn": "4.0.0",
     "tap-finished": "0.0.1"
   },
