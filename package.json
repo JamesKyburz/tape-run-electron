@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "concat-stream": "1.5.2",
-    "cross-spawn": "4.0.0",
+    "cross-spawn": "4.0.2",
     "tap-finished": "0.0.1"
   },
   "license": "MIT",
