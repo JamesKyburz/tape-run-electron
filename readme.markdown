@@ -1,5 +1,7 @@
 # tape-run-electron
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/JamesKyburz/tape-run-electron.svg)](https://greenkeeper.io/)
+
 A [tape](https://github.com/substack/tape) test runner that runs your tests in [electron](https://github.com/atom/electron)
 
 [![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
